@@ -1,20 +1,32 @@
 const { model, Schema } = require('mongoose');
 
 const postSchema = new Schema({
-  body: String,
+  body: {
+    type: String,
+    required: [true, 'Please add some text for the post']
+  },
   username: String,
-  createdAt: String,
+  createdAt: {
+    type: String,
+    default: new Date().toISOString()
+  },
   comments: [
     {
       body: String,
       username: String,
-      createdAt: String
+      createdAt: {
+        type: String,
+        default: new Date().toISOString()
+      }
     }
   ],
   likes: [
     {
       username: String,
-      createdAt: String
+      createdAt: {
+        type: String,
+        default: new Date().toISOString()
+      }
     }
   ],
   user: {
